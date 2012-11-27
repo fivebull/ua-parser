@@ -129,8 +129,15 @@ user_agent_parsers:
   - regex: '(chromeframe)/(\d+)\.(\d+)\.(\d+)'
     family_replacement: 'Chrome Frame'
 
-  # UC Browser
+  # UC Browser (mobile only)
   - regex: '(UC Browser)(\d+)\.(\d+)\.(\d+)'
+  - regex: '(UCWEB)([\d\.]+)\.(\d+)\.(\d+)'
+    family_replacement: 'UC Browser'
+  
+  # QQ mobile Browser
+  # example: "MQQBrowser/Mini3.1 (BBK)" "MQQBrowser/Mini2.6 (j2me)"
+  - regex: '(MQQBrowser)/Mini(\d+)\.(\d+)'
+    family_replacement: 'MQQ Browser'
 
   # Tizen Browser (second case included in browser/major.minor regex)
   - regex: '(SLP Browser)/(\d+)\.(\d+)'
@@ -549,7 +556,8 @@ device_parsers:
     device_replacement: 'HTC $1 (US Cellular)'
   - regex: 'Sprint APA(9292)'
     device_replacement: 'HTC $1 (Sprint)'
-  - regex: 'HTC ([A-Za-z0-9]+ [A-Z])'
+  # Desire S, Desire HD
+  - regex: 'HTC ([A-Za-z0-9]+ [A-Z]+)'
     device_replacement: 'HTC $1'
   - regex: 'HTC-([A-Za-z0-9]+)'
     device_replacement: 'HTC $1'
@@ -865,6 +873,7 @@ mobile_user_agent_families:
   - 'Chrome Mobile'
   - 'UC Browser'
   - 'Tizen Browser'
+  - 'MQQ Browser'
 
 # Some select mobile OSs report a desktop browser.
 # make sure we note they're mobile
